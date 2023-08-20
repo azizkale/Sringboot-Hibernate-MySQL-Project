@@ -1,11 +1,13 @@
 package com.azizkale.hibernatetutorial.service;
 
 import com.azizkale.hibernatetutorial.dao.EmployeeRepository;
+import com.azizkale.hibernatetutorial.exception.EmployeeNotFoundException;
 import com.azizkale.hibernatetutorial.model.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,16 +19,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Transactional
     @Override
+    @Transactional(propagation= Propagation.SUPPORTS,readOnly=true)
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 
-    @Transactional
     @Override
-    public Employee findById(int id) {
-        return employeeRepository.findById(id);
+    @Transactional(propagation= Propagation.SUPPORTS,readOnly=true)
+    public Employee findById(int id) throws EmployeeNotFoundException {
+        Employee employee = employeeRepository.findById(id);
+        if(employee == null) {
+            throw new EmployeeNotFoundException("Employee not found with id :" + id);
+        }
+        return employee;
     }
 
     @Transactional
