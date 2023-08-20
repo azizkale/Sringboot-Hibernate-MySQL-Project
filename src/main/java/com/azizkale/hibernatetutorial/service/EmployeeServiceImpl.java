@@ -24,8 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Transactional
     @Override
-    public Employee find(int id) {
-        return employeeRepository.find(id);
+    public Employee findById(int id) {
+        return employeeRepository.findById(id);
     }
 
     @Transactional
@@ -37,6 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public void delete(int id) {
-
+        employeeRepository.delete(id);
     }
 }

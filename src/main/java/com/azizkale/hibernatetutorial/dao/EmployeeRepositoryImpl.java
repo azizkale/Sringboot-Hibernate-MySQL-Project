@@ -20,7 +20,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public Employee find(int id) {
+    public Employee findById(int id) {
         return entityManager.find(Employee.class,id);
     }
 
@@ -31,6 +31,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void delete(int id) {
-
+        entityManager.remove(entityManager.getReference(Employee.class,id));
     }
 }

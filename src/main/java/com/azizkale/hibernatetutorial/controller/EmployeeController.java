@@ -25,18 +25,22 @@ public class EmployeeController {
 
     @GetMapping("/employee/{id}")
     public Employee find(@PathVariable int id){
-        return employeeService.find(id);
+        return employeeService.findById(id);
     }
 
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee){
         try {
             employeeService.create(employee);
-//            Integer id = employee.getId();
-//            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
             return employee;
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public String delete(@PathVariable int id){
+        employeeService.delete(id);
+        return "Employee has been deleted with id: " + id;
     }
 }
