@@ -29,12 +29,14 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public void create(@RequestBody Employee employee){
+    public Employee create(@RequestBody Employee employee){
         try {
             employeeService.create(employee);
-            Integer id = employee.getId();
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+//            Integer id = employee.getId();
+//            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+            return employee;
         } catch (Exception ex) {
+            return null;
         }
     }
 }
