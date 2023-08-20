@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EmployeeRepository {
     List<Employee> findAll();
-    Employee get(int id);
+    Employee find(int id);
     void create(Employee employee);
     void delete (int id);
 }

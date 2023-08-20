@@ -20,7 +20,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public Employee get(int id) {
+    public Employee find(int id) {
         return entityManager.find(Employee.class,id);
     }
 

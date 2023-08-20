@@ -23,9 +23,9 @@ public class EmployeeController {
         return employeeService.findAll();
     }
 
-    @GetMapping("/e")
-    public Employee get(int id){
-        return employeeService.get(id);
+    @GetMapping("/employee/{id}")
+    public Employee find(@PathVariable int id){
+        return employeeService.find(id);
     }
 
     @PostMapping("/employee")

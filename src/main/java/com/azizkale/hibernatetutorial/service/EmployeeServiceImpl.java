@@ -24,8 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Transactional
     @Override
-    public Employee get(int id) {
-        return employeeRepository.get(id);
+    public Employee find(int id) {
+        return employeeRepository.find(id);
     }
 
     @Transactional
