@@ -43,4 +43,10 @@ public class EmployeeController {
         employeeService.delete(id);
         return "Employee has been deleted with id: " + id;
     }
+
+    @PutMapping("/employee")
+    public Employee update(@RequestBody Employee employee){
+        employeeService.update(employee);
+        return employee;
+    }
 }

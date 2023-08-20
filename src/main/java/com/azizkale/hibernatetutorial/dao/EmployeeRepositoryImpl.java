@@ -26,11 +26,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void create(Employee employee) {
-        entityManager.merge(employee);
+        entityManager.persist(employee);
     }
 
     @Override
     public void delete(int id) {
         entityManager.remove(entityManager.getReference(Employee.class,id));
+    }
+
+    @Override
+    public Employee update(Employee employee) {
+        return entityManager.merge(employee);
     }
 }
